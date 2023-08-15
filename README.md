@@ -1,4 +1,4 @@
-#Philosophers
+# Philosophers
 
 ## Dining Philosophers Problem
 ## Overview
