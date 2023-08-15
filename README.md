@@ -1,5 +1,6 @@
-# Dining Philosophers Problem
+#Philosophers
 
+## Dining Philosophers Problem
 ## Overview
 The Dining Philosophers Problem is a classic concurrency problem in computer science. This code provides an alternative implementation of the problem using pthreads in C.
 
