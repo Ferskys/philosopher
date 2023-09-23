@@ -50,8 +50,7 @@ Some of the external functions that can be used are:
 
 ## Usage
 To compile and run the programs, you can use the provided `Makefile`. Here are a few examples:
-
-<!-- 
+------------------------------------------------------------------------------------------------------
 #include <string.h>
 
 int main() {
@@ -135,6 +134,3 @@ int main() {
     pthread_mutex_destroy(&mutex);
     return 0;
 }
-
- */
- -->
