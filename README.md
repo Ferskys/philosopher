@@ -51,3 +51,90 @@ Some of the external functions that can be used are:
 ## Usage
 To compile and run the programs, you can use the provided `Makefile`. Here are a few examples:
 
+<!-- 
+#include <string.h>
+
+int main() {
+    char arr[10];
+    memset(arr, 'A', 10);  // Fill the array with 'A' 10 times
+    return 0;
+}
+ 
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+ 
+#include <stdlib.h>
+
+int main() {
+    int *ptr = (int *)malloc(10 * sizeof(int));  // Allocate memory for 10 integers
+    // Use the allocated memory
+    free(ptr);  // Free the allocated memory when done using it
+    return 0;
+}
+
+#include <unistd.h>
+
+int main() {
+    char buffer[] = "Hello, World!\n";
+    write(STDOUT_FILENO, buffer, sizeof(buffer) - 1);  // Write to standard output
+    return 0;
+}
+ 
+#include <unistd.h>
+
+int main() {
+    usleep(1000000);  // Sleep for 1 second (1,000,000 microseconds)
+    return 0;
+}
+
+#include <sys/time.h>
+
+int main() {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    printf("Seconds: %ld, Microseconds: %ld\n", tv.tv_sec, tv.tv_usec);
+    return 0;
+}
+
+#include <pthread.h>
+#include <stdio.h>
+
+void *thread_function(void *arg) {
+    printf("Thread is running\n");
+    return NULL;
+}
+
+int main() {
+    pthread_t thread_id;
+    pthread_create(&thread_id, NULL, thread_function, NULL);
+    pthread_join(thread_id, NULL);  // Wait for the thread to finish
+    return 0;
+}
+
+#include <pthread.h>
+
+pthread_mutex_t mutex;
+
+void *thread_function(void *arg) {
+    pthread_mutex_lock(&mutex);
+    // Critical section
+    printf("Thread is in the critical section\n");
+    pthread_mutex_unlock(&mutex);
+    return NULL;
+}
+
+int main() {
+    pthread_mutex_init(&mutex, NULL);
+    pthread_t thread_id;
+    pthread_create(&thread_id, NULL, thread_function, NULL);
+    pthread_join(thread_id, NULL);
+    pthread_mutex_destroy(&mutex);
+    return 0;
+}
+
+ */
+ -->
