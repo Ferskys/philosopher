@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 12:48:59 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/23 22:20:05 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/09/23 22:35:47 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_philo
 	int				nbr_of_meals;
 	int				left_fork;
 	int				right_fork;
-	struct timeval	last_meal;
+	long int		last_meal;
 	pthread_t		thread;
 }					t_philo;
 

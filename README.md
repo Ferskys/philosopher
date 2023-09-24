@@ -51,6 +51,7 @@ Some of the external functions that can be used are:
 ## Usage
 To compile and run the programs, you can use the provided `Makefile`. Here are a few examples:
 ------------------------------------------------------------------------------------------------------
+```
 #include <string.h>
 
 int main() {
@@ -58,14 +59,16 @@ int main() {
     memset(arr, 'A', 10);  // Fill the array with 'A' 10 times
     return 0;
 }
- 
+```
+```
 #include <stdio.h>
 
 int main() {
     printf("Hello, World!\n");
     return 0;
 }
- 
+```
+``` 
 #include <stdlib.h>
 
 int main() {
@@ -74,7 +77,8 @@ int main() {
     free(ptr);  // Free the allocated memory when done using it
     return 0;
 }
-
+```
+```
 #include <unistd.h>
 
 int main() {
@@ -82,14 +86,16 @@ int main() {
     write(STDOUT_FILENO, buffer, sizeof(buffer) - 1);  // Write to standard output
     return 0;
 }
- 
+```
+```
 #include <unistd.h>
 
 int main() {
     usleep(1000000);  // Sleep for 1 second (1,000,000 microseconds)
     return 0;
 }
-
+```
+```
 #include <sys/time.h>
 
 int main() {
@@ -98,7 +104,8 @@ int main() {
     printf("Seconds: %ld, Microseconds: %ld\n", tv.tv_sec, tv.tv_usec);
     return 0;
 }
-
+```
+```
 #include <pthread.h>
 #include <stdio.h>
 
@@ -113,7 +120,8 @@ int main() {
     pthread_join(thread_id, NULL);  // Wait for the thread to finish
     return 0;
 }
-
+```
+```
 #include <pthread.h>
 
 pthread_mutex_t mutex;
@@ -134,3 +142,4 @@ int main() {
     pthread_mutex_destroy(&mutex);
     return 0;
 }
+```
