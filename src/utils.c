@@ -6,11 +6,11 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 13:22:50 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/23 18:02:54 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/09/23 21:34:28 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 int	ft_is_digit(char *str)
 {
