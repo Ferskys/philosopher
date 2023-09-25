@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 12:48:59 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/23 22:35:47 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/09/24 20:46:24 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,17 @@ typedef struct s_philo
 	int				right_fork;
 	long int		last_meal;
 	pthread_t		thread;
+	pthread_t 		monitor;
 }					t_philo;
 
 typedef struct s_config
 {
-
 	int				nbr_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nbr_of_meals;
+	int				dead;
 	t_philo			*philo;
 	long int		start_time;
 	pthread_mutex_t	*forks;

@@ -6,37 +6,37 @@
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/23 21:30:38 by fsuomins          #+#    #+#              #
-#    Updated: 2023/09/23 21:36:36 by fsuomins         ###   ########.fr        #
+#    Updated: 2023/09/24 20:44:14 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-INC 	= includes/philo.h
+INC = includes/philo.h
+SRC = src/philo.c src/utils.c
+OBJ = $(SRC:.c=.o)
 
-SRC		= src/philo.c \
-		  src/utils.c 
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -pthread
+DEBUGFLAGS = -g
 
-CC 		= gcc
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-FLAGS	= -Wall -Wextra -Werror -pthread -g
-
-OBJS 	= $(SRC:.c=.o)
-
-$(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(SRC) -o $(NAME)
-
-all: $(NAME) $(OBJS) $(INC)
+all: $(NAME)
 
 %.o: %.c $(INC)
-		$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEBUGFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJS)
+	rm -f $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+valgrind: $(NAME)
+	valgrind --leak-check=full ./$(NAME)
+
+.PHONY: all clean fclean re valgrind

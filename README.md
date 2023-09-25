@@ -48,6 +48,7 @@ To compile and run the programs, you can use the provided `Makefile`. Here are a
 
 ------------------------------------------------------------------------------------------------------
 
+
 This code implements a simulation of the dining philosophers problem using multithreading and mutexes in C. I'll provide an explanation of the main components and functions in the code.
 Header File (philo.h)
 
