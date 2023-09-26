@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 18:27:47 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/23 23:14:05 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/09/26 00:43:01 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,38 +115,40 @@ void	philo_eat(t_philo *philo)
 	t_config	*args;
 
 	args = get_args();
+	pthread_mutex_lock(&lock); 
 	if(philo->id % 2 != 0)
 	{
 		pthread_mutex_lock(&args->forks[philo->left_fork]);
 		printf("%ld %d has taken left fork\n", get_time() - args->start_time, philo->id);
 		if (&args->forks[philo->right_fork] != &args->forks[philo->left_fork])
 		{
-		pthread_mutex_lock(&args->forks[philo->right_fork]);
-		printf("%ld %d has taken right fork\n", get_time() - args->start_time, philo->id);
-		philo->nbr_of_meals++;
-		philo->last_meal = get_time();
-		printf("%ld %d is eating\n", get_time() - args->start_time, philo->id);
-		usleep(1000 * args->time_to_eat);
-		pthread_mutex_unlock(&args->forks[philo->left_fork]);
-		pthread_mutex_unlock(&args->forks[philo->right_fork]);
+			pthread_mutex_lock(&args->forks[philo->right_fork]);
+			printf("%ld %d has taken right fork\n", get_time() - args->start_time, philo->id);
+			philo->last_meal = get_time();
+			philo->nbr_of_meals++;
+			printf("%ld %d is eating\n", get_time() - args->start_time, philo->id);
+			usleep(1000 * args->time_to_eat);
+			pthread_mutex_unlock(&args->forks[philo->left_fork]);
+			pthread_mutex_unlock(&args->forks[philo->right_fork]);
 		}
 	}
 	else
 	{
-			pthread_mutex_lock(&args->forks[philo->right_fork]);
-			printf("%ld %d has taken right fork\n", get_time() - args->start_time, philo->id);
+		pthread_mutex_lock(&args->forks[philo->right_fork]);
+		printf("%ld %d has taken right fork\n", get_time() - args->start_time, philo->id);
 		if (&args->forks[philo->right_fork] != &args->forks[philo->left_fork])
 		{
 			pthread_mutex_lock(&args->forks[philo->left_fork]);
 			printf("%ld %d has taken left fork\n", get_time() - args->start_time, philo->id);
-			philo->nbr_of_meals++;
 			philo->last_meal = get_time();
+			philo->nbr_of_meals++;
 			printf("%ld %d is eating\n", get_time() - args->start_time, philo->id);
 			usleep(1000 * args->time_to_eat);
 			pthread_mutex_unlock(&args->forks[philo->right_fork]);
 			pthread_mutex_unlock(&args->forks[philo->left_fork]);
 		}
 	}
+	pthread_mutex_unlock(&lock);
 }
 
 void	philo_sleep(t_philo *philo)
@@ -154,8 +156,10 @@ void	philo_sleep(t_philo *philo)
 	t_config	*args;
 
 	args = get_args();
+	pthread_mutex_lock(&lock);
 	printf("%ld %d is sleeping\n", get_time() - args->start_time, philo->id);
 	usleep(1000 * args->time_to_sleep);
+	pthread_mutex_unlock(&lock);
 }
 
 void	philo_think(t_philo *philo)
@@ -163,31 +167,40 @@ void	philo_think(t_philo *philo)
 	t_config	*args;
 
 	args = get_args();
+	pthread_mutex_lock(&lock); 
 	printf("%ld %d is thinking\n", get_time() - args->start_time, philo->id);
+	usleep(1000 * args->time_to_sleep);
+	pthread_mutex_unlock(&lock);
 }
 
-void	philo_check_death(t_philo *philo)
+int	philo_check_death(t_philo *philo)
 {
 	t_config	*args;
 
 	args = get_args();
+	pthread_mutex_lock(&lock); 
 	if (philo->last_meal + args->time_to_die < get_time())
 	{
 		printf("%ld %d died\n", get_time() - args->start_time, philo->id);
 		exit(1);
 	}
+	pthread_mutex_unlock(&lock);
+	return (0);
 }
 
-void	philo_check_meals(t_philo *philo)
+int	philo_check_meals(t_philo *philo)
 {
 	t_config	*args;
 
 	args = get_args();
+	pthread_mutex_lock(&lock); 
 	if (args->nbr_of_meals != 0)
 	{
 		if (philo->nbr_of_meals == args->nbr_of_meals)
 			exit(1);
 	}
+	pthread_mutex_unlock(&lock);
+	return (0);
 }
 
 void	*philo_routine(void *arg)
@@ -198,10 +211,15 @@ void	*philo_routine(void *arg)
 	while (1)
 	{
 		philo_eat(philo);
-		philo_check_meals(philo);
+		if(philo_check_death(philo))
+			return (NULL);
 		philo_sleep(philo);
+		if(philo_check_death(philo))
+			return (NULL);
 		philo_think(philo);
-		philo_check_death(philo);
+		if(philo_check_death(philo))
+			return (NULL);
+		philo_check_meals(philo);
 	}
 	return (NULL);
 }
@@ -221,7 +239,8 @@ void	philo_threader(t_config *args)
 	{
 		pthread_join(args->philo[i].thread, NULL);
 		i++;
-	}	
+	}
+
 }
 
 int	main(int argc, char **argv)
