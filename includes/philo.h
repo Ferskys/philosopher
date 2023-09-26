@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 12:48:59 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/26 00:42:31 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/09/26 12:06:08 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ typedef struct s_config
 	int				time_to_sleep;
 	int				nbr_of_meals;
 	t_philo			*philo;
+	int				dead;
 	long int		start_time;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	*print;
+	pthread_mutex_t	*dead_mutex;
 }					t_config;
 
 int					ft_atoi(const char *str);
