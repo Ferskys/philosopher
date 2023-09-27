@@ -6,12 +6,20 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 13:22:50 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/26 21:23:44 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/09/27 14:29:45 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+void	ft_usleep(long time)
+{
+	long	start;
+
+	start = get_time();
+	while (get_time() - start < time)
+		usleep(10);
+}
 
 int	ft_is_digit(char *str)
 {

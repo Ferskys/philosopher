@@ -43,7 +43,7 @@ The Dining Philosophers Problem is a classic concurrency problem in computer sci
 ## Requirements and External Functions
 The programs should comply with the specified requirements.
 Some of the external functions that can be used are:
-- memset, printf, malloc, free, write, usleep
+- memset, printf, malloc, free, write, ft_usleep
 - gettimeofday, pthread_create, pthread_detach, pthread_join
 - pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
 - fork, kill, exit, waitpid, sem_open, sem_close, sem_post, sem_wait, sem_unlink
@@ -91,7 +91,7 @@ int main() {
 #include <unistd.h>
 
 int main() {
-    usleep(1000000);  // Sleep for 1 second (1,000,000 microseconds)
+    ft_usleep(1000000);  // Sleep for 1 second (1,000,000 microseconds)
     return 0;
 }
 ```

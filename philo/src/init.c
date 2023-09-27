@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 19:24:36 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/26 23:49:53 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/09/27 15:46:42 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	one_philo(t_config *args)
 {
 	printf("%ld %d has taken left fork\n", get_time() - args->start_time,
 		args->philo[0].id);
-	usleep(get_args()->time_to_die * 1000);
+	ft_usleep(get_args()->time_to_die);
 	printf("%ld %d dead\n", get_time() - args->start_time, args->philo[0].id);
 }
 
@@ -46,6 +46,5 @@ int	init_args(t_config *args, int argc, char **argv)
 		pthread_mutex_init(&args->forks[i], NULL);
 		i++;
 	}
-	args->start_time = get_time();
 	return (0);
 }

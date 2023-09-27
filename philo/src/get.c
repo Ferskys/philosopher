@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 18:27:47 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/26 23:41:10 by fsuomins         ###   ########.fr       */
+/*   Created: 2023/09/26 19:39:59 by fsuomins          #+#    #+#             */
+/*   Updated: 2023/09/27 14:59:57 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	main(int argc, char **argv)
+t_config	*get_args(void)
 {
-	t_config *args;
+	static t_config	args;
 
-	args = get_args();
-	if (validate_args(argc, argv))
-		return (1);
-	if (init_args(args, argc, argv) == 1)
-		return (1);
-	if (args->nbr_philo == 1)
-	{
-		one_philo(args);
-		clear_program(args);
-		return (0);
-	}
-	philo_threader(args);
-	clear_program(args);
-	return (0);
+	return (&args);
+}
+
+long int	get_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

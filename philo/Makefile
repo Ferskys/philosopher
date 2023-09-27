@@ -6,7 +6,7 @@
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/23 21:30:38 by fsuomins          #+#    #+#              #
-#    Updated: 2023/09/26 23:42:06 by fsuomins         ###   ########.fr        #
+#    Updated: 2023/09/27 16:21:54 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,14 @@ SRC		= src/philo.c \
 		  src/get.c \
 		  src/destroy.c
 
-CC 		= gcc
+CC 		= cc
 
-FLAGS	= -Wall -Wextra -Werror -pthread -g
+FLAGS	= -Wall -Wextra -Werror -pthread
 
 OBJS 	= $(SRC:.c=.o)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(SRC) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 all: $(NAME) $(OBJS) $(INC)
 
