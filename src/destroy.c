@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   destroy..c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 18:27:47 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/26 23:41:10 by fsuomins         ###   ########.fr       */
+/*   Created: 2023/09/26 19:22:29 by fsuomins          #+#    #+#             */
+/*   Updated: 2023/09/26 23:46:31 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	main(int argc, char **argv)
+void	clear_program(t_config *args)
 {
-	t_config *args;
+	int	i;
 
-	args = get_args();
-	if (validate_args(argc, argv))
-		return (1);
-	if (init_args(args, argc, argv) == 1)
-		return (1);
-	if (args->nbr_philo == 1)
+	i = 0;
+	while (i < args->nbr_philo)
 	{
-		one_philo(args);
-		clear_program(args);
-		return (0);
+		pthread_mutex_destroy(&args->forks[i]);
+		i++;
 	}
-	philo_threader(args);
-	clear_program(args);
-	return (0);
+	free(args->forks);
+	free(args->philo);
 }

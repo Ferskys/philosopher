@@ -6,7 +6,7 @@
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/23 21:30:38 by fsuomins          #+#    #+#              #
-#    Updated: 2023/09/23 21:36:36 by fsuomins         ###   ########.fr        #
+#    Updated: 2023/09/26 23:42:06 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,13 @@ NAME = philo
 INC 	= includes/philo.h
 
 SRC		= src/philo.c \
-		  src/utils.c 
+		  src/check_args.c \
+		  src/init.c \
+		  src/utils.c \
+		  src/routine.c \
+		  src/execute_threads.c \
+		  src/get.c \
+		  src/destroy.c
 
 CC 		= gcc
 

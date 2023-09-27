@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 12:48:59 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/09/26 12:06:08 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/09/26 23:40:19 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ typedef struct s_philo
 
 typedef struct s_config
 {
-
 	int				nbr_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nbr_of_meals;
 	t_philo			*philo;
-	int				dead;
+	_Atomic int dead;
 	long int		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*print;
@@ -46,11 +45,22 @@ typedef struct s_config
 }					t_config;
 
 int					ft_atoi(const char *str);
-void				ft_check_args(void);
+void				print_def(t_philo *philo, char *str);
+t_config			*get_args(void);
+int					validate_args(int argc, char **argv);
+void				one_philo(t_config *args);
+void				philo_threader(t_config *args);
 int					init_args(t_config *args, int argc, char **argv);
 int					ft_is_digit(char *str);
-void				clear_program(t_config *args);
 long int			get_time(void);
 void				*philo_routine(void *arg);
+void				philo_eat(t_philo *philo);
+void				philo_sleep(t_philo *philo);
+void				philo_think(t_philo *philo);
+int					philo_check_death(t_philo *philo);
+int					philo_check_meals(t_philo *philo);
+void				print_dead(t_philo *philo, char *str);
+void				clear_program(t_config *args);
+void				error_type(char *str, int error);
 
 #endif

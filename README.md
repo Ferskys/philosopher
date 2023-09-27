@@ -143,3 +143,28 @@ int main() {
     return 0;
 }
 ```
+
+
+8818 3 is eating
+8918 4 is thinking
+8918 2 is thinking
+9018 1 is sleeping
+9018 3 is sleeping
+9018 4 has taken a fork
+9018 4 has taken a fork
+9018 4 is eating
+9018 2 has taken a fork
+9018 2 has taken a fork
+9018 2 is eating
+9118 1 is thinking
+9118 3 is thinking
+9218 2 is sleeping
+9218 3 has taken a fork
+9218 3 has taken a fork
+9218 3 is eating
+9218 1 has taken a fork
+9218 1 has taken a fork
+9218 1 is eating
+9218 4 is sleeping
+9319 2 is thinking
+9319 4 is thinking
